@@ -10,7 +10,7 @@ pipeline {
          }
       }
     stage('Verify Files'){
-      step{
+      steps{
          sh '''
          pwd
          ls -la
