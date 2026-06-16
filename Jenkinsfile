@@ -1,7 +1,6 @@
 pipeline {
     agent any
     stages {
-      stage {
         stage('Checkout Code'){
           steps {
                git branch: 'main', url: 'https://github.com/Anjali08Patel/devsecops-project.git'
@@ -21,5 +20,5 @@ pipeline {
         steps {
           sh 'docker rm -f test-container || true'
         }
-      }
+     }
  }
