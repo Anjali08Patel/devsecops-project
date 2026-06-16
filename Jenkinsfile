@@ -1,25 +1,33 @@
 pipeline {
     agent any
+    tools {
+       sonarQubeScanner 'sonar-scanner'
+    }
     stages {
-        stage('Checkout Code'){
-          steps {
-               git branch: 'main', url: 'https://github.com/Anjali08Patel/devsecops-project.git'
-          }
+       stage('Checkout'){
+         steps{
+            checkout scm
+         }
       }
-      stage('Docker Build') {
-        steps {
-          sh 'docker build -t devsecops-backend:v1 backend'
-        }
-      }
-      stage ('Docker Run Test'){
-        steps {
-          sh 'docker run -d -p 5000:5000 --name test-container devsecops-backend:v1'
-        }
-      }
-      stage ('Cleanup'){
-        steps {
-          sh 'docker rm -f test-container || true'
-        }
+    stage('Verify Files'){
+      step{
+         sh '''
+         pwd
+         ls -la
+         ls -la backend
+       }
+    }
+    stage('SonarQube Scan'){
+      steps {
+         dir('backend'){
+           withSonarQubeEnv('sonarqube') {
+              sh '''
+              sonar-scanner
+              '''
      }
-} 
 }
+}
+}
+}
+}
+
