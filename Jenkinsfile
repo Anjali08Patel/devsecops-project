@@ -15,7 +15,9 @@ pipeline {
          pwd
          ls -la
          ls -la backend
+        '''
        }
+
     }
     stage('SonarQube Scan'){
       steps {
