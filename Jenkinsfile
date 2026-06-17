@@ -16,6 +16,7 @@ pipeline {
        }
 
     }
+    
     stage('SonarQube Scan'){
       steps {
          dir('backend'){
@@ -23,11 +24,21 @@ pipeline {
                def scannerHome = tool 'sonar-scanner'
            withSonarQubeEnv('sonarqube') {
               sh "${scannerHome}/bin/sonar-scanner"
-}
+                 }
+               }
+            }
+          }
+      }
+   stage('ESLint'){
+    steps {
+      dir('backend'){
+        sh '''
+        npm install
+        npx eslint .
+        '''
+       }
      }
-}
-}
-}
+   }
 }
 }
 
