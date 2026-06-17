@@ -39,6 +39,14 @@ pipeline {
        }
      }
    }
-}
+  stage('NPM Audit'){
+  steps{
+    dir('backend'){
+    sh '''
+    npm audit
+     '''
+    }
+   }
+  }
 }
 
