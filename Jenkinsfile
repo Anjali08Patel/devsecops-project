@@ -29,6 +29,15 @@ pipeline {
             }
           }
       }
+   stage('HAdolint){
+   steps{
+    dir('backend'){
+    sh'''
+    hadolint DOckerfile
+    '''
+    }
+   }
+  }
    stage('Docker build'){
    steps{
       dir('backend'){
