@@ -55,6 +55,15 @@ pipeline {
      '''
     }
   }
+  stage('Trivy'scan){
+  steps{
+
+    sh'''
+    trivy image devsecops-backend:${BUILD_NUMBER}
+    '''
+    }
+
+}
    stage('ESLint'){
     steps {
       dir('backend'){
