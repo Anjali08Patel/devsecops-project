@@ -29,6 +29,23 @@ pipeline {
             }
           }
       }
+   stage('Docker build'){
+   steps{
+      dir('backend'){
+      sh'''
+      docker build \
+      -t devsecops-backend:${BUILD_NUMBER} .
+      '''
+    }
+   }
+ }
+  stage('List Image'){
+  steps{
+     sh '''
+     docker images
+     '''
+    }
+  }
    stage('ESLint'){
     steps {
       dir('backend'){
