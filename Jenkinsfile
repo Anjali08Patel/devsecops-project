@@ -55,7 +55,7 @@ pipeline {
      '''
     }
   }
-  stage('Trivy'scan){
+  stage('Trivy scan'){
   steps{
 
     sh'''
