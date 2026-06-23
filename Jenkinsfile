@@ -29,7 +29,7 @@ pipeline {
             }
           }
       }
-   stage('HAdolint){
+   stage('HAdolint'){
    steps{
     dir('backend'){
     sh'''
