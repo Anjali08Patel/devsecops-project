@@ -33,7 +33,7 @@ pipeline {
    steps{
     dir('backend'){
     sh'''
-    hadolint DOckerfile
+    hadolint Dockerfile
     '''
     }
    }
