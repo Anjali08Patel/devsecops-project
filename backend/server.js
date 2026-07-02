@@ -95,7 +95,13 @@ app.get("/api", (req, res) => {
 | Prometheus Metrics Endpoint
 |--------------------------------------------------------------------------
 */
+app.get("/slow", async (req, res) => {
 
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    res.send("Slow endpoint completed in about 1 second");
+
+});
 app.get("/metrics", async (req, res) => {
     try {
         res.set("Content-Type", client.register.contentType);
